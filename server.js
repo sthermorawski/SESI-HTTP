@@ -65,12 +65,12 @@ app.post("/aluno", (req, res) => {
 
 //PUT - atualizar aluno
 app.put("/aluno/:id", (req, res) => {
-    const id = number(req,params.id);
+    const id = Number(req.params.id);
 
     const indice = alunos.findIndex(a => a.id === id);
 
     if(indice === -1) {
-        return res.status(404),json({
+        return res.status(404).json({
             mensagem: "aluno nao encontrado"
         });
     }
@@ -95,7 +95,7 @@ app.put("/aluno/:id", (req, res) => {
 
 //delete - excluir aluno - desafio montar estrutura
 app.delete("/aluno/:id", (req, res) => {
-    const id = number(req.params.id);
+    const id = Number(req.params.id);
 
     const existe = alunos.some(a => a.id === id);
 
