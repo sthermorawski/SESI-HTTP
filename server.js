@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.get("/alunos", (req, res) => {
 
 // GET - Consultar aluno pelo id
 app.get("/alunos/:id",(req, res) => {
-    const id = number(req.params.id);
+    const id = Number(req.params.id);
 
     const aluno = alunos.find(a => a.id === id);
 
@@ -37,6 +37,7 @@ app.get("/alunos/:id",(req, res) => {
             mensagem: "aluno nao encontrado."
         });
     }
+    res.status(200).json(aluno);
 })
 
 // POST - cadastrar aluno
@@ -106,4 +107,9 @@ app.delete("/aluno/:id", (req, res) => {
 
     alunos = alunos.filter(a => a.id !== id);
     res.status(204).send();
+});
+
+// iniciar servidor
+app.listen(PORT, () => {
+    console.log(`API executando em http://localhost:${PORT}`);
 });
